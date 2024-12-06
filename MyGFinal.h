@@ -1,6 +1,6 @@
 #ifndef MyGFinal_DEFINED
 #define MyGFinal_DEFINED
-
+ 
 
 #include "include/GFinal.h"
 #include "include/GPath.h"
