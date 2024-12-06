@@ -94,7 +94,7 @@ std::shared_ptr<GPath> MyGFinal::strokePolygon(const GPoint points[], int count,
     return builder.detach();
 }
 
-std::shared_ptr<GShader> MyGFinal::createLinearPosGradient(GPoint p0, GPoint p1, const GColor colors[], const float pos[], int count) { 
+std::shared_ptr<GShader> myGFinal::createLinearPosGradient(GPoint p0, GPoint p1, const GColor colors[], const float pos[], int count) { 
     if (count < 1 || !colors || !pos) { 
         return nullptr; } 
         
