@@ -94,6 +94,36 @@ std::shared_ptr<GPath> MyGFinal::strokePolygon(const GPoint points[], int count,
     return builder.detach();
 }
 
+std::shared_ptr<GShader> MyFinal::createLinearPosGradient(GPoint p0, GPoint p1, const GColor colors[], const float pos[], int count) { 
+    if (count < 1 || !colors || !pos) { 
+        return nullptr; } 
+        
+    std::vector<GColor> interpolatedColors; for (float t = 0; t <= 1.0f; t += 0.01f) { 
+        int index = 0; 
+        while (index < count - 1 && t > pos[index + 1]) { 
+            index++; 
+        } 
+        
+        GColor color; 
+        if (t <= pos[0]) { 
+            color = colors[0]; 
+        } else if (t >= pos[count - 1]) { 
+            color = colors[count - 1]; 
+        } else { 
+            float t0 = pos[index]; 
+            float t1 = pos[index + 1]; 
+            float weight = (t - t0) / (t1 - t0); 
+            
+            const GColor& c0 = colors[index]; 
+            const GColor& c1 = colors[index + 1]; 
+            color = { c0.r + (c1.r - c0.r) * weight, c0.g + (c1.g - c0.g) * weight, c0.b + (c1.b - c0.b) * weight, c0.a + (c1.a - c0.a) * weight }; 
+        } 
+        
+        interpolatedColors.push_back(color);
+    } 
+    return GCreateLinearGradient(p0, p1, interpolatedColors.data(), interpolatedColors.size(), GTileMode::kClamp); 
+}
+
 
 std::unique_ptr<GFinal> GCreateFinal() {
     return std::make_unique<MyGFinal>();
