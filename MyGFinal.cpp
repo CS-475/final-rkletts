@@ -1,4 +1,4 @@
-#include "myGFinal.h"
+#include "MyGFinal.h"
 #include <cmath>
 
 
