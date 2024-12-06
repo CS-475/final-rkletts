@@ -5,7 +5,7 @@
 
 class MyFinal : public GFinal {
 public:
-	std::shared_ptr<GShader> createVoronoiShader(const GPoint ponts[], const GColor colors[], int count) override;
+    std::shared_ptr<GShader> createVoronoiShader(const GPoint points[], const GColor colors[], int count) override;
 };
 
 #endif
