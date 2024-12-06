@@ -2,8 +2,6 @@
 #include <cmath>
 
 
-
-
 namespace {
     std::shared_ptr<GPath> final_addStrokedLine(GPoint p0, GPoint p1, float width, bool roundCap) {
         float slope = (p1.y - p0.y) / (p1.x - p0.x);
